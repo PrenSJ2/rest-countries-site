@@ -5,12 +5,19 @@ import {fetchAllCountries} from "./api/RestCountries";
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import * as agGrid from "ag-grid-community";
+import Modal from 'react-modal';
+
+
+Modal.setAppElement('#root'); // Ensure '#root' is your root element ID
 
 
 function App() {
     const [rows, setRows] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filterText, setFilterText] = useState('');
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [selectedCountry, setSelectedCountry] = useState(null);
+
     const gridApiRef = useRef(null);
 
     const gridOptions = {
@@ -38,6 +45,10 @@ function App() {
                 console.log('Setting row data:', rows);
                 gridApiRef.current.setRowData(rows);
             }
+        },
+        onRowClicked: params => {
+            setSelectedCountry(params.data);
+            setModalIsOpen(true);
         }
     }
 
@@ -83,6 +94,35 @@ function App() {
                 />
             </header>
             <div id="myGrid" className="ag-theme-quartz" style={{height: 600, width: '100%'}}></div>
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={() => setModalIsOpen(false)}
+                style={{
+                    content: {
+                        position: 'absolute',
+                        top: '40px',
+                        left: '40px',
+                        right: '40px',
+                        bottom: '40px',
+                        border: '1px solid #ccc',
+                        background: '#fff',
+                        overflow: 'auto',
+                        WebkitOverflowScrolling: 'touch',
+                        borderRadius: '4px',
+                        outline: 'none',
+                        padding: '20px',
+                        zIndex: 9999
+                    }
+                }}
+            >
+                <h2>{selectedCountry?.name?.common || 'Country Details'}</h2>
+                <div>
+                    <strong>Population:</strong> {selectedCountry?.population}<br />
+                    <strong>Languages:</strong> {Object.values(selectedCountry?.languages || {}).join(', ')}<br />
+                    <strong>Currencies:</strong> {Object.values(selectedCountry?.currencies || {}).map(c => c.name).join(', ')}<br />
+                </div>
+                <button onClick={() => setModalIsOpen(false)}>Close</button>
+            </Modal>r
         </div>
     );
 }
