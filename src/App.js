@@ -116,10 +116,25 @@ function App() {
                 }}
             >
                 <h2>{selectedCountry?.name?.common || 'Country Details'}</h2>
+                <h2>{selectedCountry?.flag}</h2>
                 <div>
-                    <strong>Population:</strong> {selectedCountry?.population}<br />
-                    <strong>Languages:</strong> {Object.values(selectedCountry?.languages || {}).join(', ')}<br />
-                    <strong>Currencies:</strong> {Object.values(selectedCountry?.currencies || {}).map(c => c.name).join(', ')}<br />
+                    <h3>General Data:</h3>
+                    <strong>Population:</strong> {selectedCountry?.population}<br/>
+                    <strong>Currencies:</strong> {Object.values(selectedCountry?.currencies || {}).map(c => c.name).join(', ')}<br/>
+                    <strong>Timezones:</strong> {selectedCountry?.timezones?.join(', ')}<br/>
+                    <h3>Location Data:</h3>
+                    <strong>Capital:</strong> {selectedCountry?.capital}<br/>
+                    <strong>Region:</strong> {selectedCountry?.region}<br/>
+                    <strong>Subregion:</strong> {selectedCountry?.subregion}<br/>
+                    <strong>Lat / Long:</strong> {selectedCountry?.latlng?.join(', ')}<br/>
+                    <strong>Area:</strong> {selectedCountry?.area}<br/>
+                    <strong>Landlocked:</strong> {selectedCountry?.landlocked ? 'Yes' : 'No'}<br/>
+                    <strong>Borders:</strong> {selectedCountry?.borders?.join(', ')}<br/>
+
+                    <h3>Language:</h3>
+                    <strong>Languages:</strong> {Object.values(selectedCountry?.languages || {}).join(', ')}<br/>
+                    <strong>Translations:</strong> {Object.entries(selectedCountry?.translations || {}).map(([lang, names]) => `${lang}: ${names.official}, ${names.common}`).join(', ')}<br/>
+
                 </div>
                 <button onClick={() => setModalIsOpen(false)}>Close</button>
             </Modal>r
