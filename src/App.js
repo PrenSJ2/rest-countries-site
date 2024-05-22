@@ -6,9 +6,11 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-quartz.css';
 import * as agGrid from "ag-grid-community";
 
+
 function App() {
     const [rows, setRows] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [filterText, setFilterText] = useState('');
     const gridApiRef = useRef(null);
 
     const gridOptions = {
@@ -19,14 +21,14 @@ function App() {
             {
                 field: 'languages',
                 headerName: 'Languages',
-                width: 200,
-                valueGetter: params => Object.values(params.data.languages).join(', ')
+                width: 400,
+                valueGetter: params => params.data.languages ? Object.values(params.data.languages).join(', ') : ''
             },
             {
                 field: 'currencies',
                 headerName: 'Currencies',
                 width: 200,
-                valueGetter: params => Object.values(params.data.currencies).map(currency => currency.name).join(', ')
+                valueGetter: params => params.data.currencies ? Object.values(params.data.currencies).map(currency => currency.name).join(', ') : ''
             },
         ],
         animateRows: true,
@@ -61,14 +63,28 @@ function App() {
         }
     }, [loading]);
 
+    const handleFilterChange = (event) => {
+        setFilterText(event.target.value);
+        if (gridApiRef.current) {
+            gridApiRef.current.setQuickFilter(event.target.value);
+        }
+    };
+
     return (
         <div className="App">
             <header className="App-header">
                 <h1>Rest Countries</h1>
+                <input
+                    type="text"
+                    value={filterText}
+                    onChange={handleFilterChange}
+                    placeholder="Search countries..."
+                    style={{ marginBottom: '10px' }}
+                />
             </header>
             <div id="myGrid" className="ag-theme-quartz" style={{height: 600, width: '100%'}}></div>
         </div>
-    )
+    );
 }
 
 export default App;
