@@ -13,11 +13,21 @@ function App() {
 
     const gridOptions = {
         columnDefs: [
-            { field: 'name', headerName: 'Name', width: 200 },
+            { field: 'name.common', headerName: 'Name', width: 200 },
             { field: 'flag', headerName: 'Flag', width: 200 },
             { field: 'population', headerName: 'Population', width: 200 },
-            { field: 'languages', headerName: 'Languages', width: 200 },
-            { field: 'currencies', headerName: 'Currencies', width: 200 },
+            {
+                field: 'languages',
+                headerName: 'Languages',
+                width: 200,
+                valueGetter: params => Object.values(params.data.languages).join(', ')
+            },
+            {
+                field: 'currencies',
+                headerName: 'Currencies',
+                width: 200,
+                valueGetter: params => Object.values(params.data.currencies).map(currency => currency.name).join(', ')
+            },
         ],
         animateRows: true,
         onGridReady: params => {
