@@ -17,6 +17,7 @@ function App() {
     const [filterText, setFilterText] = useState('');
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedCountry, setSelectedCountry] = useState(null);
+    const [favourites, setFavourites] = useState(JSON.parse(localStorage.getItem('favourites')) || []);
 
     const gridApiRef = useRef(null);
 
@@ -81,6 +82,20 @@ function App() {
         }
     };
 
+    const handleFavouriteClick = () => {
+      if (selectedCountry) {
+        if (favourites.includes(selectedCountry.cca2)) {
+          const newfavourites = favourites.filter(code => code !== selectedCountry.cca2);
+          setFavourites(newfavourites);
+          localStorage.setItem('favourites', JSON.stringify(newfavourites));
+        } else {
+          const newfavourites = [...favourites, selectedCountry.cca2];
+          setFavourites(newfavourites);
+          localStorage.setItem('favourites', JSON.stringify(newfavourites));
+        }
+      }
+    };
+
     return (
         <div className="App">
             <header className="App-header">
@@ -117,13 +132,19 @@ function App() {
             >
                 <h2>{selectedCountry?.name?.common || 'Country Details'}</h2>
                 <h2>{selectedCountry?.flag}</h2>
+                <button
+                    className={`favourite ${selectedCountry && favourites.includes(selectedCountry.cca2) ? 'favourited' : ''}`}
+                    onClick={handleFavouriteClick}
+                >
+                    Favorite
+                </button>
                 <div>
                     <h3>General Data:</h3>
                     <strong>Native Name:</strong> {selectedCountry?.name?.native?.common}<br/>
                     <strong>Population:</strong> {selectedCountry?.population}<br/>
                     <strong>Currencies:</strong> {Object.values(selectedCountry?.currencies || {}).map(c => c.name).join(', ')}<br/>
                     <strong>Timezones:</strong> {selectedCountry?.timezones?.join(', ')}<br/>
-                    <strong>CCA3 Code:</strong> {selectedCountry?.cca3}<br/>
+                    <strong>CCA2 Code:</strong> {selectedCountry?.cca2}<br/>
 
                     <h3>Location Data:</h3>
                     <strong>Capital:</strong> {selectedCountry?.capital}<br/>

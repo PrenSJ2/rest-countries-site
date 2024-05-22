@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.favourite {
+  color: grey;
+}
+
+.favourite.favourited {
+  color: red;
+}
