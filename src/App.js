@@ -119,9 +119,12 @@ function App() {
                 <h2>{selectedCountry?.flag}</h2>
                 <div>
                     <h3>General Data:</h3>
+                    <strong>Native Name:</strong> {selectedCountry?.name?.native?.common}<br/>
                     <strong>Population:</strong> {selectedCountry?.population}<br/>
                     <strong>Currencies:</strong> {Object.values(selectedCountry?.currencies || {}).map(c => c.name).join(', ')}<br/>
                     <strong>Timezones:</strong> {selectedCountry?.timezones?.join(', ')}<br/>
+                    <strong>CCA3 Code:</strong> {selectedCountry?.cca3}<br/>
+
                     <h3>Location Data:</h3>
                     <strong>Capital:</strong> {selectedCountry?.capital}<br/>
                     <strong>Region:</strong> {selectedCountry?.region}<br/>
