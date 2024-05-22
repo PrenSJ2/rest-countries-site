@@ -12,3 +12,14 @@ export const fetchAllCountries = async () => {
         throw error;
     }
 };
+
+export const fetchCountry = async (code) => {
+    try {
+        const { data } = await axios.get(`${REST_COUNTRIES_API}/alpha/${code}`);
+        return data;
+    }
+    catch (error) {
+        console.error(`Error fetching country ${code}`, error);
+        throw error;
+    }
+}

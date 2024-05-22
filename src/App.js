@@ -18,6 +18,7 @@ function App() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedCountry, setSelectedCountry] = useState(null);
     const [favourites, setFavourites] = useState(JSON.parse(localStorage.getItem('favourites')) || []);
+    const [filterFavorites, setFilterFavorites] = useState(false);
 
     const gridApiRef = useRef(null);
 
@@ -43,8 +44,8 @@ function App() {
         onGridReady: params => {
             gridApiRef.current = params.api;
             if (rows.length > 0) {
-                console.log('Setting row data:', rows);
-                gridApiRef.current.setRowData(rows);
+              const data = filterFavorites ? rows.filter(row => favourites.includes(row.cca2)) : rows;
+              gridApiRef.current.setRowData(data);
             }
         },
         onRowClicked: params => {
@@ -74,6 +75,13 @@ function App() {
             agGrid.createGrid(myGridElement, gridOptions);
         }
     }, [loading]);
+
+    useEffect(() => {
+        if (gridApiRef.current) {
+            const data = filterFavorites ? rows.filter(row => favourites.includes(row.cca2)) : rows;
+            gridApiRef.current.setRowData(data);
+        }
+    }, [filterFavorites, rows, favourites]);
 
     const handleFilterChange = (event) => {
         setFilterText(event.target.value);
@@ -105,8 +113,11 @@ function App() {
                     value={filterText}
                     onChange={handleFilterChange}
                     placeholder="Search countries..."
-                    style={{ marginBottom: '10px' }}
+                    style={{marginBottom: '10px'}}
                 />
+                <button onClick={() => setFilterFavorites(!filterFavorites)}>
+                    {filterFavorites ? 'Show All' : 'Show Favorites'}
+                </button>
             </header>
             <div id="myGrid" className="ag-theme-quartz" style={{height: 600, width: '100%'}}></div>
             <Modal
