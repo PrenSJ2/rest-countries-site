@@ -42,8 +42,8 @@ function App() {
         ],
         animateRows: true,
         pagination: true,
-        paginationPageSize: 12,
-        paginationPageSizeSelector: [12, 20, 50, 100],
+        paginationPageSize: 18,
+        paginationPageSizeSelector: [18, 20, 50, 100],
         onGridReady: params => {
             gridApiRef.current = params.api;
             if (rows.length > 0) {
@@ -175,7 +175,7 @@ function App() {
 
                 </div>
                 <button onClick={() => setModalIsOpen(false)}>Close</button>
-            </Modal>r
+            </Modal>
         </div>
     );
 }

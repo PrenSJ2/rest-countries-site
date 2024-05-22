@@ -19,3 +19,9 @@ code {
 .favourite.favourited {
   color: red;
 }
+
+#myGrid {
+  max-width: 1200px;
+  min-height: 70vh;
+  margin-top: 50px;
+}
