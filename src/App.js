@@ -41,6 +41,9 @@ function App() {
             },
         ],
         animateRows: true,
+        pagination: true,
+        paginationPageSize: 12,
+        paginationPageSizeSelector: [12, 20, 50, 100],
         onGridReady: params => {
             gridApiRef.current = params.api;
             if (rows.length > 0) {
