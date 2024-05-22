@@ -128,24 +128,17 @@ function App() {
                 onRequestClose={() => setModalIsOpen(false)}
                 style={{
                     content: {
-                        position: 'absolute',
-                        top: '40px',
-                        left: '40px',
-                        right: '40px',
-                        bottom: '40px',
-                        border: '1px solid #ccc',
-                        background: '#fff',
-                        overflow: 'auto',
                         WebkitOverflowScrolling: 'touch',
-                        borderRadius: '4px',
-                        outline: 'none',
-                        padding: '20px',
-                        zIndex: 9999
                     }
                 }}
+                className="Modal"
             >
-                <h2>{selectedCountry?.name?.common || 'Country Details'}</h2>
-                <h2>{selectedCountry?.flag}</h2>
+
+                <div className="Modal-close" onClick={() => setModalIsOpen(false)}></div>
+                <div className="Modal-title">
+                    <span className="Modal-flag">{selectedCountry?.flag}</span>
+                    <h2>{selectedCountry?.name?.common || 'Country Details'}</h2>
+                </div>
                 <button
                     className={`favourite ${selectedCountry && favourites.includes(selectedCountry.cca2) ? 'favourited' : ''}`}
                     onClick={handleFavouriteClick}
@@ -172,9 +165,7 @@ function App() {
                     <h3>Language:</h3>
                     <strong>Languages:</strong> {Object.values(selectedCountry?.languages || {}).join(', ')}<br/>
                     <strong>Translations:</strong> {Object.entries(selectedCountry?.translations || {}).map(([lang, names]) => `${lang}: ${names.official}, ${names.common}`).join(', ')}<br/>
-
                 </div>
-                <button onClick={() => setModalIsOpen(false)}>Close</button>
             </Modal>
         </div>
     );
