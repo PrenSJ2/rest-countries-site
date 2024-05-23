@@ -12,10 +12,160 @@ code {
     monospace;
 }
 
-.favourite {
-  color: grey;
+h1 {
+  margin-bottom: 0;
 }
 
-.favourite.favourited {
-  color: red;
+p {
+  font-size: 0.4em;
+  max-width: 400px;
+  text-align: justify;
+  margin-bottom: 30px;
+}
+
+a {
+  color: #ffffff;
+}
+
+.signature {
+  font-size: 0.8em;
+  color: #ffffff;
+  margin-top: 20px;
+}
+
+.signature a {
+  text-decoration: none;
+}
+
+.searchInputs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.searchInputs input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  width: 300px;
+  background: url('https://cdn-icons-png.flaticon.com/512/482/482631.png') no-repeat scroll 7px 7px, white;
+  padding-left:30px;
+  background-size: 20px;
+}
+
+.searchInputs button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #ca82a0;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.searchInputs button:hover {
+  background-color: #a96282;
+}
+
+
+#myGrid {
+  max-width: 1200px;
+  min-height: 70vh;
+  margin-top: 50px;
+}
+
+/* Modal Styling */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  outline: none;
+  padding: 20px;
+  z-index: 9999;
+  max-height: 800px;
+  min-width: 800px;
+  border-radius: 10px;
+}
+
+.modalClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.modalClose:before,
+.modalClose:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 9px;
+  height: 21px;
+  width: 2px;
+  background-color: #333;
+}
+
+.modalClose:before {
+  transform: rotate(45deg);
+}
+
+.modalClose:after {
+  transform: rotate(-45deg);
+}
+
+.modalTitle {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+}
+
+.modalTitle span {
+  font-size: 1.8em;
+}
+
+.modalTitle {
+  margin-right: 10px;
+}
+
+.modalDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.modalDetails > * {
+  padding: 10px;
+}
+
+.modalVisuals {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.modalVisuals div {
+  display: flex;
+  flex-direction: row;
+  max-width: 400px;
+  align-content: center;
+  justify-content: center;
+}
+
+.modalVisuals img {
+  max-width: 50%;
+  padding: 10px;
+}
+
+
+.modalVisuals iframe {
+  width: 400px;
+  height: 400px;
 }
