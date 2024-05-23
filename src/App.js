@@ -135,37 +135,64 @@ function App() {
             >
 
                 <div className="Modal-close" onClick={() => setModalIsOpen(false)}></div>
-                <div className="Modal-title">
-                    <span className="Modal-flag">{selectedCountry?.flag}</span>
-                    <h2>{selectedCountry?.name?.common || 'Country Details'}</h2>
-                </div>
-                <button
-                    className={`favourite ${selectedCountry && favourites.includes(selectedCountry.cca2) ? 'favourited' : ''}`}
-                    onClick={handleFavouriteClick}
-                >
-                    Favorite
-                </button>
-                <div>
-                    <h3>General Data:</h3>
-                    <strong>Native Name:</strong> {selectedCountry?.name?.native?.common}<br/>
-                    <strong>Population:</strong> {selectedCountry?.population}<br/>
-                    <strong>Currencies:</strong> {Object.values(selectedCountry?.currencies || {}).map(c => c.name).join(', ')}<br/>
-                    <strong>Timezones:</strong> {selectedCountry?.timezones?.join(', ')}<br/>
-                    <strong>CCA2 Code:</strong> {selectedCountry?.cca2}<br/>
+                <div className='modalDetails'>
+                    <div>
 
-                    <h3>Location Data:</h3>
-                    <strong>Capital:</strong> {selectedCountry?.capital}<br/>
-                    <strong>Region:</strong> {selectedCountry?.region}<br/>
-                    <strong>Subregion:</strong> {selectedCountry?.subregion}<br/>
-                    <strong>Lat / Long:</strong> {selectedCountry?.latlng?.join(', ')}<br/>
-                    <strong>Area:</strong> {selectedCountry?.area}<br/>
-                    <strong>Landlocked:</strong> {selectedCountry?.landlocked ? 'Yes' : 'No'}<br/>
-                    <strong>Borders:</strong> {selectedCountry?.borders?.join(', ')}<br/>
+                        <div className="Modal-title">
+                            <span className="Modal-flag">{selectedCountry?.flag}</span>
+                            <h2>{selectedCountry?.name?.common || 'Country Details'}</h2>
+                        </div>
+                        <button
+                            className={`favourite ${selectedCountry && favourites.includes(selectedCountry.cca2) ? 'favourited' : ''}`}
+                            onClick={handleFavouriteClick}
+                        >
+                            {selectedCountry && favourites.includes(selectedCountry.cca2) ?
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+                                    <path fill="#FF0000"
+                                          d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/>
+                                </svg>
+                                :
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+                                    <path
+                                        d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/>
+                                </svg>
+                            }
+                        </button>
 
-                    <h3>Language:</h3>
-                    <strong>Languages:</strong> {Object.values(selectedCountry?.languages || {}).join(', ')}<br/>
-                    <strong>Translations:</strong> {Object.entries(selectedCountry?.translations || {}).map(([lang, names]) => `${lang}: ${names.official}, ${names.common}`).join(', ')}<br/>
+                        <h3>General Data:</h3>
+                        <strong>Languages:</strong> {Object.values(selectedCountry?.languages || {}).join(', ')}<br/>
+                        <strong>Native Name:</strong> {selectedCountry?.name?.native?.common}<br/>
+                        <strong>Population:</strong> {selectedCountry?.population}<br/>
+                        <strong>Currencies:</strong> {Object.values(selectedCountry?.currencies || {}).map(c => c.name).join(', ')}<br/>
+                        <strong>Timezones:</strong> {selectedCountry?.timezones?.join(', ')}<br/>
+                        <strong>CCA2 Code:</strong> {selectedCountry?.cca2}<br/>
+                        <strong>Top Level Domain:</strong> {selectedCountry?.tld?.join(', ')}<br/>
+                        <strong>Calling Code:</strong> {selectedCountry?.callingCode}<br/>
+                        <strong>Driving Side:</strong> {selectedCountry?.car?.side}
+
+                        <h3>Location Data:</h3>
+                        <strong>Capital:</strong> {selectedCountry?.capital}<br/>
+                        <strong>Region:</strong> {selectedCountry?.region}<br/>
+                        <strong>Subregion:</strong> {selectedCountry?.subregion}<br/>
+                        <strong>Lat / Long:</strong> {selectedCountry?.latlng?.join(', ')}<br/>
+                        <strong>Area:</strong> {selectedCountry?.area}<br/>
+                        <strong>Landlocked:</strong> {selectedCountry?.landlocked ? 'Yes' : 'No'}<br/>
+                        <strong>Borders:</strong> {selectedCountry?.borders?.join(', ')}<br/>
+                    </div>
+                    <div className='modalVisuals'>
+                        <div>
+                            <img className='flag' src={selectedCountry?.flags?.svg} alt={selectedCountry?.flags?.alt}/>
+                            <img className='coatOfArms' src={selectedCountry?.coatOfArms?.svg}
+                                 alt={selectedCountry?.name?.common}/>
+                        </div>
+                        <iframe
+                            src={`//maps.google.com/maps?q=${selectedCountry?.name?.common}&output=embed`}
+                            allowFullScreen
+                        >
+                        </iframe>
+                    </div>
                 </div>
+
             </Modal>
         </div>
     );

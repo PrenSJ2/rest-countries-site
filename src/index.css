@@ -12,14 +12,6 @@ code {
     monospace;
 }
 
-.favourite {
-  color: grey;
-}
-
-.favourite.favourited {
-  color: red;
-}
-
 #myGrid {
   max-width: 1200px;
   min-height: 70vh;
@@ -30,19 +22,17 @@ code {
 /* Modal Styling */
 .Modal {
   position: absolute;
-  top: 40px;
-  left: 40px;
-  right: 40px;
-  bottom: 40px;
-  border: 1px solid #ccc;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #ccc;
   background: #fff;
   overflow: auto;
-  border-radius: 4px;
   outline: none;
   padding: 20px;
   z-index: 9999;
-  max-width: 1000px;
   max-height: 800px;
+  border-radius: 10px;
 }
 
 .Modal-close {
@@ -76,8 +66,48 @@ code {
 .Modal-title {
   display: flex;
   align-items: center;
+  font-size: 1.5em;
+}
+
+.Modal-title span {
+  font-size: 1.8em;
 }
 
 .Modal-flag {
   margin-right: 10px;
+}
+
+.modalDetails {
+  display: flex;
+  flex-direction: row;
+}
+
+.modalDetails > * {
+  padding: 10px;
+}
+
+.modalVisuals {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.modalVisuals div {
+  display: flex;
+  flex-direction: row;
+  max-width: 400px;
+  align-content: center;
+  justify-content: center;
+}
+
+.modalVisuals img {
+  max-width: 50%;
+  padding: 10px;
+}
+
+
+.modalVisuals iframe {
+  width: 400px;
+  height: 400px;
 }
