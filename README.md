@@ -6,6 +6,10 @@ I have two branches:
 - `main` - This branch contains the original project with some extra styling.
 - `minimum-requirements` - This branch contains the original project matching the requirements.
 
+## Demo
+
+You can view the project live at [https://rest-countries-site.vercel.app/](https://rest-countries-site.vercel.app/)
+
 ## Features
 
 - Search through the countries by name, population, languages, or currencies.
@@ -36,9 +40,6 @@ I have two branches:
    ```
 2. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Production
+### Production
 
-1. Build the project
-   ```sh
-   npm run build
-   ```
+When mergeing to the `main` branch, the project will be automatically deployed to Vercel.
