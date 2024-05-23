@@ -160,36 +160,48 @@ function App() {
                         </button>
 
                         <h3>General Data:</h3>
-                        <strong>Languages:</strong> {Object.values(selectedCountry?.languages || {}).join(', ')}<br/>
-                        <strong>Native Name:</strong> {selectedCountry?.name?.native?.common}<br/>
-                        <strong>Population:</strong> {selectedCountry?.population}<br/>
-                        <strong>Currencies:</strong> {Object.values(selectedCountry?.currencies || {}).map(c => c.name).join(', ')}<br/>
-                        <strong>Timezones:</strong> {selectedCountry?.timezones?.join(', ')}<br/>
-                        <strong>CCA2 Code:</strong> {selectedCountry?.cca2}<br/>
-                        <strong>Top Level Domain:</strong> {selectedCountry?.tld?.join(', ')}<br/>
-                        <strong>Calling Code:</strong> {selectedCountry?.callingCode}<br/>
-                        <strong>Driving Side:</strong> {selectedCountry?.car?.side}
+                        {selectedCountry?.languages && <>
+                            <strong>Languages:</strong> {Object.values(selectedCountry.languages).join(', ')}<br/></>}
+                        {selectedCountry?.name?.native?.common && <><strong>Native
+                            Name:</strong> {selectedCountry.name.native.common}<br/></>}
+                        {selectedCountry?.population && <>
+                            <strong>Population:</strong> {selectedCountry.population}<br/></>}
+                        {selectedCountry?.currencies && <>
+                            <strong>Currencies:</strong> {Object.values(selectedCountry.currencies).map(c => c.name).join(', ')}<br/></>}
+                        {selectedCountry?.timezones && <>
+                            <strong>Timezones:</strong> {selectedCountry.timezones.join(', ')}<br/></>}
+                        {selectedCountry?.cca2 && <><strong>CCA2 Code:</strong> {selectedCountry.cca2}<br/></>}
+                        {selectedCountry?.tld && <><strong>Top Level
+                            Domain:</strong> {selectedCountry.tld.join(', ')}<br/></>}
+                        {selectedCountry?.callingCode && <><strong>Calling
+                            Code:</strong> {selectedCountry.callingCode}<br/></>}
+                        {selectedCountry?.car?.side && <><strong>Driving
+                            Side:</strong> {selectedCountry.car.side}<br/></>}
 
                         <h3>Location Data:</h3>
-                        <strong>Capital:</strong> {selectedCountry?.capital}<br/>
-                        <strong>Region:</strong> {selectedCountry?.region}<br/>
-                        <strong>Subregion:</strong> {selectedCountry?.subregion}<br/>
-                        <strong>Lat / Long:</strong> {selectedCountry?.latlng?.join(', ')}<br/>
-                        <strong>Area:</strong> {selectedCountry?.area}<br/>
-                        <strong>Landlocked:</strong> {selectedCountry?.landlocked ? 'Yes' : 'No'}<br/>
-                        <strong>Borders:</strong> {selectedCountry?.borders?.join(', ')}<br/>
+                        {selectedCountry?.capital && <><strong>Capital:</strong> {selectedCountry.capital}<br/></>}
+                        {selectedCountry?.region && <><strong>Region:</strong> {selectedCountry.region}<br/></>}
+                        {selectedCountry?.subregion && <>
+                            <strong>Subregion:</strong> {selectedCountry.subregion}<br/></>}
+                        {selectedCountry?.latlng && <><strong>Lat /
+                            Long:</strong> {selectedCountry.latlng.join(', ')}<br/></>}
+                        {selectedCountry?.area && <><strong>Area:</strong> {selectedCountry.area}<br/></>}
+                        {selectedCountry?.landlocked !== undefined && <>
+                            <strong>Landlocked:</strong> {selectedCountry.landlocked ? 'Yes' : 'No'}<br/></>}
+                        {selectedCountry?.borders && <>
+                            <strong>Borders:</strong> {selectedCountry.borders.join(', ')}<br/></>}
                     </div>
                     <div className='modalVisuals'>
                         <div>
-                            <img className='flag' src={selectedCountry?.flags?.svg} alt={selectedCountry?.flags?.alt}/>
-                            <img className='coatOfArms' src={selectedCountry?.coatOfArms?.svg}
-                                 alt={selectedCountry?.name?.common}/>
+                            {selectedCountry?.flags?.svg && <img className='flag' src={selectedCountry?.flags?.svg}
+                                                                 alt={selectedCountry?.flags?.alt}/>}
+                            {selectedCountry?.coatOfArms?.svg &&
+                                <img className='coatOfArms' src={selectedCountry?.coatOfArms?.svg}
+                                     alt={selectedCountry?.name?.common}/>}
                         </div>
-                        <iframe
-                            src={`//maps.google.com/maps?q=${selectedCountry?.name?.common}&output=embed`}
-                            allowFullScreen
-                        >
-                        </iframe>
+                        {selectedCountry?.name?.common &&
+                            <iframe src={`//maps.google.com/maps?q=${selectedCountry?.name?.common}&output=embed`}
+                                    allowFullScreen></iframe>}
                     </div>
                 </div>
 
