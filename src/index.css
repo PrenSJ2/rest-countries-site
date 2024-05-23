@@ -12,15 +12,71 @@ code {
     monospace;
 }
 
+h1 {
+  margin-bottom: 0;
+}
+
+p {
+  font-size: 0.4em;
+  max-width: 400px;
+  text-align: justify;
+  margin-bottom: 30px;
+}
+
+a {
+  color: #ffffff;
+}
+
+.signature {
+  font-size: 0.8em;
+  color: #ffffff;
+  margin-top: 20px;
+}
+
+.signature a {
+  text-decoration: none;
+}
+
+.searchInputs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.searchInputs input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  width: 300px;
+  background: url('https://cdn-icons-png.flaticon.com/512/482/482631.png') no-repeat scroll 7px 7px, white;
+  padding-left:30px;
+  background-size: 20px;
+}
+
+.searchInputs button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #ca82a0;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.searchInputs button:hover {
+  background-color: #a96282;
+}
+
+
 #myGrid {
   max-width: 1200px;
   min-height: 70vh;
   margin-top: 50px;
 }
 
-
 /* Modal Styling */
-.Modal {
+.modal {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -32,10 +88,11 @@ code {
   padding: 20px;
   z-index: 9999;
   max-height: 800px;
+  min-width: 800px;
   border-radius: 10px;
 }
 
-.Modal-close {
+.modalClose {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -44,8 +101,8 @@ code {
   cursor: pointer;
 }
 
-.Modal-close:before,
-.Modal-close:after {
+.modalClose:before,
+.modalClose:after {
   content: '';
   position: absolute;
   top: 0;
@@ -55,31 +112,32 @@ code {
   background-color: #333;
 }
 
-.Modal-close:before {
+.modalClose:before {
   transform: rotate(45deg);
 }
 
-.Modal-close:after {
+.modalClose:after {
   transform: rotate(-45deg);
 }
 
-.Modal-title {
+.modalTitle {
   display: flex;
   align-items: center;
   font-size: 1.5em;
 }
 
-.Modal-title span {
+.modalTitle span {
   font-size: 1.8em;
 }
 
-.Modal-flag {
+.modalTitle {
   margin-right: 10px;
 }
 
 .modalDetails {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .modalDetails > * {

@@ -111,16 +111,27 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <h1>Rest Countries</h1>
-                <input
-                    type="text"
-                    value={filterText}
-                    onChange={handleFilterChange}
-                    placeholder="Search countries..."
-                    style={{marginBottom: '10px'}}
-                />
-                <button onClick={() => setFilterFavorites(!filterFavorites)}>
-                    {filterFavorites ? 'Show All' : 'Show Favorites'}
-                </button>
+                <p>
+                  This is a project that uses React and the <a href='https://restcountries.com/'>REST Countries API</a> to display information about different countries.
+                  Here are the key features:
+                  <ul>
+                    <li>You can search through the countries by name, emoji, population, languages, or currencies.</li>
+                    <li>Select a row for more detailed information about a country.</li>
+                    <li>Add countries to your favorites list.</li>
+                    <li>You can also sort each column by selecting the column title.</li>
+                  </ul>
+                </p>
+                <div className="searchInputs">
+                    <input
+                        type="text"
+                        value={filterText}
+                        onChange={handleFilterChange}
+                        placeholder="Search countries..."
+                    />
+                    <button onClick={() => setFilterFavorites(!filterFavorites)}>
+                        {filterFavorites ? 'Show All' : 'Show Favorites'}
+                    </button>
+                </div>
             </header>
             <div id="myGrid" className="ag-theme-quartz" style={{height: 600, width: '100%'}}></div>
             <Modal
@@ -131,15 +142,15 @@ function App() {
                         WebkitOverflowScrolling: 'touch',
                     }
                 }}
-                className="Modal"
+                className="modal"
             >
 
-                <div className="Modal-close" onClick={() => setModalIsOpen(false)}></div>
+                <div className="modalClose" onClick={() => setModalIsOpen(false)}></div>
                 <div className='modalDetails'>
                     <div>
 
-                        <div className="Modal-title">
-                            <span className="Modal-flag">{selectedCountry?.flag}</span>
+                        <div className="modalTitle">
+                            <span className="modalFlag">{selectedCountry?.flag}</span>
                             <h2>{selectedCountry?.name?.common || 'Country Details'}</h2>
                         </div>
                         <button
@@ -147,14 +158,14 @@ function App() {
                             onClick={handleFavouriteClick}
                         >
                             {selectedCountry && favourites.includes(selectedCountry.cca2) ?
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
-                                    <path fill="#FF0000"
-                                          d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24">
+                                    <path fill="#FFD43B"
+                                          d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/>
                                 </svg>
                                 :
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24">
                                     <path
-                                        d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/>
+                                        d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/>
                                 </svg>
                             }
                         </button>
@@ -206,6 +217,7 @@ function App() {
                 </div>
 
             </Modal>
+            <p className='signature'><a href='https://seb.onlineolive.xyz'>By Sebastian Prentice</a></p>
         </div>
     );
 }
