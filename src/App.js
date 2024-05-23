@@ -118,7 +118,7 @@ function App() {
                     <li>You can search through the countries by name, emoji, population, languages, or currencies.</li>
                     <li>Select a row for more detailed information about a country.</li>
                     <li>Add countries to your favorites list.</li>
-                    <li>You can also sort each column by selecting the column title.</li>
+                    <li>Sort each column by selecting the column title.</li>
                   </ul>
                 </p>
                 <div className="searchInputs">
