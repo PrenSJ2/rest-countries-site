@@ -16,13 +16,6 @@ h1 {
   margin-bottom: 0;
 }
 
-p {
-  font-size: 0.4em;
-  max-width: 400px;
-  text-align: justify;
-  margin-bottom: 30px;
-}
-
 a {
   color: #ffffff;
 }
@@ -68,6 +61,21 @@ a {
   background-color: #a96282;
 }
 
+.project-info{
+  font-size: 0.4em;
+  max-width: 400px;
+  text-align: justify;
+  margin-bottom: 30px;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+}
 
 #myGrid {
   max-width: 1200px;

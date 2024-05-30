@@ -12,6 +12,7 @@ Modal.setAppElement('#root'); // Ensure '#root' is your root element ID
 
 
 function App() {
+    // Setting up reacts built in state management
     const [rows, setRows] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filterText, setFilterText] = useState('');
@@ -111,16 +112,22 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <h1>Rest Countries</h1>
-                <p>
-                  This is a project that uses React and the <a href='https://restcountries.com/'>REST Countries API</a> to display information about different countries.
-                  Here are the key features:
-                  <ul>
-                    <li>You can search through the countries by name, emoji, population, languages, or currencies.</li>
-                    <li>Select a row for more detailed information about a country.</li>
-                    <li>Add countries to your favorites list.</li>
-                    <li>Sort each column by selecting the column title.</li>
-                  </ul>
-                </p>
+                <div className="project-info">
+                    <p>
+                        This is a project that uses React and the <a href='https://restcountries.com/'>REST Countries
+                        API</a> to display information about different countries.
+                    </p>
+                    <p>
+                        Here are the key features:
+                    </p>
+                    <ul>
+                        <li>You can search through the countries by name, emoji, population, languages, or currencies.
+                        </li>
+                        <li>Select a row for more detailed information about a country.</li>
+                        <li>Add countries to your favorites list.</li>
+                        <li>Sort each column by selecting the column title.</li>
+                    </ul>
+                </div>
                 <div className="searchInputs">
                     <input
                         type="text"
@@ -133,7 +140,18 @@ function App() {
                     </button>
                 </div>
             </header>
-            <div id="myGrid" className="ag-theme-quartz" style={{height: 600, width: '100%'}}></div>
+            {loading ? (
+                <>
+                    <div className="loading">
+                        <img src={logo} className="App-logo" alt="logo"/>
+                        <h3>Loading...</h3>
+                        <p>Fetching all countries from the REST Countries API</p>
+                        <p>This usually takes around 5 seconds, please be patient</p>
+                    </div>
+                </>
+            ) : (
+                <div id="myGrid" className="ag-theme-quartz" style={{height: 600, width: '100%'}}></div>
+            )}
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={() => setModalIsOpen(false)}
